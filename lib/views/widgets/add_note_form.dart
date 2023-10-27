@@ -11,16 +11,18 @@ import 'add_note_bottom_sheet.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> formKey = GlobalKey();
+
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
   String? title, subTitle;
   @override
   Widget build(BuildContext context) {
@@ -29,31 +31,31 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 32,
           ),
           CustomTextField(
             onSaved: (value) {
               title = value;
             },
-            hint: 'Title',
+            hint: 'title',
           ),
-          SizedBox(
-            height: 20,
+          const SizedBox(
+            height: 16,
           ),
           CustomTextField(
             onSaved: (value) {
               subTitle = value;
             },
-            hint: 'Content',
+            hint: 'content',
             maxLines: 5,
           ),
-          SizedBox(
-            height: 30,
+          const SizedBox(
+            height: 32,
           ),
-          ColorListView(),
-          SizedBox(
-            height: 20,
+          const ColorsListView(),
+          const SizedBox(
+            height: 32,
           ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
@@ -63,6 +65,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     var currentDate = DateTime.now();
+
                     var formattedCurrentDate =
                         DateFormat('dd-mm-yyyy').format(currentDate);
                     var noteModel = NoteModel(
@@ -79,11 +82,91 @@ class _AddNoteFormState extends State<AddNoteForm> {
               );
             },
           ),
-          SizedBox(
-            height: 20,
+          const SizedBox(
+            height: 16,
           ),
         ],
       ),
     );
   }
 }
+
+
+// class AddNoteForm extends StatefulWidget {
+//   const AddNoteForm({
+//     super.key,
+//   });
+
+//   @override
+//   State<AddNoteForm> createState() => _AddNoteFormState();
+// }
+
+// class _AddNoteFormState extends State<AddNoteForm> {
+//   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+//   final GlobalKey<FormState> formKey = GlobalKey();
+//   String? title, subTitle;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Form(
+//       key: formKey,
+//       autovalidateMode: autovalidateMode,
+//       child: Column(
+//         children: [
+//           SizedBox(
+//             height: 32,
+//           ),
+//           CustomTextField(
+//             onSaved: (value) {
+//               title = value;
+//             },
+//             hint: 'Title',
+//           ),
+//           SizedBox(
+//             height: 20,
+//           ),
+//           CustomTextField(
+//             onSaved: (value) {
+//               subTitle = value;
+//             },
+//             hint: 'Content',
+//             maxLines: 5,
+//           ),
+//           SizedBox(
+//             height: 30,
+//           ),
+//           ColorListView(),
+//           SizedBox(
+//             height: 20,
+//           ),
+//           BlocBuilder<AddNoteCubit, AddNoteState>(
+//             builder: (context, state) {
+//               return CustomButton(
+//                 isLoading: state is AddNoteLoding ? true : false,
+//                 onTap: () {
+//                   if (formKey.currentState!.validate()) {
+//                     formKey.currentState!.save();
+//                     var currentDate = DateTime.now();
+//                     var formattedCurrentDate =
+//                         DateFormat('dd-mm-yyyy').format(currentDate);
+//                     var noteModel = NoteModel(
+//                         title: title!,
+//                         subTitle: subTitle!,
+//                         date: formattedCurrentDate,
+//                         color: Colors.blue.value);
+//                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+//                   } else {
+//                     autovalidateMode = AutovalidateMode.always;
+//                     setState(() {});
+//                   }
+//                 },
+//               );
+//             },
+//           ),
+//           SizedBox(
+//             height: 20,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

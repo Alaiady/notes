@@ -9,20 +9,19 @@ import 'package:project_11/views/widgets/custom_button.dart';
 import 'package:project_11/views/widgets/custom_text_field.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
-  AddNoteBottomSheet({super.key});
-  // bool isLoading = false;
+  const AddNoteBottomSheet({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNoteCubit(),
       child: BlocConsumer<AddNoteCubit, AddNoteState>(
         listener: (context, state) {
-          if (state is AddNoteFailure) {
-            print('failed${state.errMessage}');
-            if (state is AddNoteSuccess) {
-              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              Navigator.pop(context);
-            }
+          if (state is AddNoteFailure) {}
+
+          if (state is AddNoteSuccess) {
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+            Navigator.pop(context);
           }
         },
         builder: (context, state) {
@@ -43,3 +42,45 @@ class AddNoteBottomSheet extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+// class AddNoteBottomSheet extends StatelessWidget {
+//   AddNoteBottomSheet({super.key});
+//   // bool isLoading = false;
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocProvider(
+//       create: (context) => AddNoteCubit(),
+//       child: BlocConsumer<AddNoteCubit, AddNoteState>(
+//         listener: (context, state) {
+//           if (state is AddNoteFailure) {
+//             if (state is AddNoteSuccess) {
+//               // BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+//               Navigator.pop(context);
+//             }
+//           }
+//         },
+//         builder: (context, state) {
+//           return AbsorbPointer(
+//             absorbing: state is AddNoteLoding ? true : false,
+//             child: Padding(
+//               padding: EdgeInsets.only(
+//                   left: 16,
+//                   right: 16,
+//                   bottom: MediaQuery.of(context).viewInsets.bottom),
+//               child: const SingleChildScrollView(
+//                 child: AddNoteForm(),
+//               ),
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_11/cubits/notes_cubit/notes_cubit.dart';
 import 'package:project_11/models/note_model.dart';
 import 'package:project_11/views/edit_notes_view.dart';
 import 'package:project_11/views/widgets/edit_view_body.dart';
@@ -41,6 +43,7 @@ class NoteItem extends StatelessWidget {
               trailing: IconButton(
                   onPressed: () {
                     note.delete();
+                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                   },
                   icon: const Icon(
                     Icons.delete,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_11/cubits/add_note_cubit/add_note_cubit.dart';
+// import 'package:project_11/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:project_11/cubits/notes_cubit/notes_cubit.dart';
 import 'package:project_11/models/note_model.dart';
-import 'package:project_11/views/widgets/colors_list_view.dart';
-import 'package:project_11/views/widgets/constants.dart';
+// import 'package:project_11/views/widgets/colors_list_view.dart';
+// import 'package:project_11/views/widgets/constants.dart';
 import 'package:project_11/views/widgets/custom_app_bar.dart';
 import 'package:project_11/views/widgets/custom_text_field.dart';
 import 'package:project_11/views/widgets/edit_note_colors_list_view.dart';
@@ -22,10 +22,10 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           CustomAppBar(
@@ -39,7 +39,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             title: 'Edit Note',
             icon: Icons.check,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           CustomTextField(
@@ -47,7 +47,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                 title = value;
               },
               hint: widget.note.title),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           CustomTextField(
@@ -57,7 +57,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             hint: widget.note.subTitle,
             maxLines: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           EditNoteColorList(

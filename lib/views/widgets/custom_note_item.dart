@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_11/cubits/notes_cubit/notes_cubit.dart';
 import 'package:project_11/models/note_model.dart';
 import 'package:project_11/views/edit_notes_view.dart';
-import 'package:project_11/views/widgets/edit_view_body.dart';
+// import 'package:project_11/views/widgets/edit_view_body.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
@@ -30,7 +30,7 @@ class NoteItem extends StatelessWidget {
             ListTile(
               title: Text(
                 note.title,
-                style: TextStyle(fontSize: 30, color: Colors.black),
+                style: const TextStyle(fontSize: 30, color: Colors.black),
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
